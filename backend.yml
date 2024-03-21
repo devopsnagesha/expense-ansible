@@ -51,7 +51,7 @@
           - cryptography
         executable: pip3.9
 
-    - name: load schema
+    - name: Load Schema
       community.mysql.mysql_db:
         state: import
         name: all
