@@ -1,0 +1,31 @@
+- name: mysql setup
+  hosts: all
+  become: yes
+  tasks:
+
+    - name: Install mysql server
+      ansible.builtin.dnf:
+        name: mysql-server
+        state: latest
+
+    - name: Start mysql service
+      ansible.builtin.systemd_service:
+        name: mysql
+        state: enable
+        enabled: yes
+
+    - name: set root password
+      ansible.builtin.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
+
+
+
+
+
+
+
+#print_task_heading "Setup MySQL Password"
+#echo 'show databases' |mysql -h mysql-dev.angadicnc.online -uroot -p${mysql_root_password} &>>$LOG
+#if [ $? -ne 0 ]; then
+#mysql_secure_installation --set-root-pass ${mysql_root_password} &>>$LOG
+#fi
+#check_status $?
