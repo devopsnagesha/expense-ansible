@@ -24,9 +24,9 @@
     state: latest
 
 - name: Copy Backend Service file
-  ansible.builtin.copy:
-    src: expense.conf
-    dest: /etc/systemd/system/expense.conf
+  ansible.builtin.template:
+    src: backend.service
+    dest: /etc/systemd/system/backend.service
 
 - name: Install mysql
   ansible.builtin.dnf:
