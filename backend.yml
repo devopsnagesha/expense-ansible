@@ -1,7 +1,7 @@
 - name: Backend Setup
   hosts: all
   become: yes
-  task:
+  tasks:
 
     - name: Disable nodejs old version
       ansible.builtin.shell: dnf module disable nodejs -y
