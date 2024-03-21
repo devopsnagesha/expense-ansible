@@ -43,7 +43,7 @@
         src: backend.service
         dest: /etc/systemd/system/backend.service
 
-    - name: Install NodeJS
+    - name: Install mysql
       ansible.builtin.dnf:
         name: mysql
         state: installed
