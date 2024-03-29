@@ -1,0 +1,71 @@
+format_version: 10
+pipelines:
+  backend:
+    group: defaultGroup
+    materials:
+      git-1ab79a5:
+        git: https://github.com/devopsnagesha/expense-ansible.git
+        shallow_clone: false
+        auto_update: true
+        branch: main
+    stages:
+      - DEV:
+          fetch_materials: true
+          environment_variables:
+            env: dev
+          approval:
+            type: manual
+          jobs:
+            ansible-playbook:
+              tasks:
+                - exec:
+                    arguments:
+                      - ansible.sh
+                      - backend
+                    command: bash #bash ansible.sh backend
+                    run_if: passed
+      - QA:
+          fetch_materials: true
+          environment_variables:
+            env: qa
+          approval:
+            type: manual
+          jobs:
+            ansible-playbook:
+              tasks:
+                - exec:
+                    arguments:
+                      - ansible.sh
+                      - backend
+                    command: bash #bash ansible.sh backend
+                    run_if: passed
+      - STAGE:
+          fetch_materials: true
+          environment_variables:
+            env: stage
+          approval:
+            type: manual
+          jobs:
+            ansible-playbook:
+              tasks:
+                - exec:
+                    arguments:
+                      - ansible.sh
+                      - backend
+                    command: bash #bash ansible.sh backend
+                    run_if: passed
+      - PROD:
+          fetch_materials: true
+          environment_variables:
+            env: prod
+          approval:
+            type: manual
+          jobs:
+            ansible-playbook:
+              tasks:
+                - exec:
+                    arguments:
+                      - ansible.sh
+                      - backend
+                    command: bash #bash ansible.sh backend
+                    run_if: passed
