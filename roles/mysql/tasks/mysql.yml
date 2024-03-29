@@ -1,13 +1,30 @@
-- name: Install mysql server
+- name: Install MySQL Server
   ansible.builtin.dnf:
     name: mysql-server
-    state: latest
+    state: installed
 
-- name: Start mysql service
+- name: Start MySQL Service
   ansible.builtin.systemd_service:
     name: mysqld
     state: started
     enabled: yes
 
-- name: set Mysql password
+- name: Install Python MySQL Client
+  ansible.builtin.pip:
+    name:
+      - PyMySQL
+      - cryptography
+    executable: pip3.9
+
+- name: Check the DB connection with our password
+  community.mysql.mysql_info:
+    login_user: root
+    login_password: ExpenseApp@1
+    login_host: mysql-dev.rdevops6a.online
+    filter: version
+  register: mysql_connection_output
+  ignore_errors: yes
+
+- name: Setup MySQL Password
   ansible.builtin.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
+  when: mysql_connection_output.failed is true

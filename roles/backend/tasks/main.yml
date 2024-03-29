@@ -11,7 +11,7 @@
 
 - name: Adding Application User
   ansible.builtin.user:
-    name: expense
+    name: "{{ app_user }}"
 
 - name: Import App Pre Requisites
   ansible.builtin.import_role:
@@ -28,17 +28,17 @@
     src: backend.service
     dest: /etc/systemd/system/backend.service
 
-- name: Install mysql
-  ansible.builtin.dnf:
-    name: mysql
-    state: installed
-
 - name: Install Python MySQL Client
   ansible.builtin.pip:
     name:
       - PyMySQL
       - cryptography
     executable: pip3.9
+
+- name: Install mysql
+  ansible.builtin.dnf:
+    name: mysql
+    state: installed
 
 - name: Load Schema
   community.mysql.mysql_db:

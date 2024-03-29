@@ -2,7 +2,7 @@
   Description = Backend Service
   
   [Service]
-  User=expense
+  User={{app_user}}
   Environment=DB_HOST="mysql-dev.angadicnc.online"
   ExecStart=/bin/node /app/index.js
   SyslogIdentifier=backend
