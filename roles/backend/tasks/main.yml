@@ -49,6 +49,11 @@
     login_password: ExpenseApp@1
     login_host: mysql-dev.angadicnc.online
 
+- name: Import NewRelic NodeJS Setup
+  ansible.builtin.import_role:
+    name: newrelic
+    tasks_from: nodejs
+
 - name: Start Backend Service
   ansible.builtin.systemd_service:
     name: backend
