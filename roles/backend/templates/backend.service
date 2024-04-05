@@ -1,5 +1,5 @@
 [Unit]
-  Description = Backend Service
+Description = Backend Service
 
 [Service]
 User={{app_user}}
