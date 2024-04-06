@@ -46,8 +46,8 @@
     name: all
     target: /app/schema/backend.sql
     login_user: root
-    login_password: ExpenseApp@1
-    login_host: mysql-dev.angadicnc.online
+    login_password: "{{mysql_root_password}}"
+    login_host: mysql-{{env}}.angadicnc.online
 
 - name: Import NewRelic NodeJS Setup
   ansible.builtin.import_role:
