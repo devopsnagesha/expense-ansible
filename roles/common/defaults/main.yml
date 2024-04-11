@@ -1,0 +1,2 @@
+rsyslog_config_needed: false
+logstash_config_needed: true
