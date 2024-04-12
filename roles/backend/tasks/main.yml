@@ -33,7 +33,6 @@
     name:
       - PyMySQL
       - cryptography
-      - hvac
     executable: pip3.9
 
 - name: Install mysql
