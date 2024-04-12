@@ -13,14 +13,22 @@
     name: common
     tasks_from: app-pre-req
 
+- name: Install Python MySQL Client
+  ansible.builtin.pip:
+    name:
+      - PyMySQL
+      - cryptography
+      - hvac
+    executable: pip3.9
+
+- name: Import NewRelic Nginx Setup
+  ansible.builtin.import_role:
+    name: newrelic
+    tasks_from: nginx
+
 - name: start nginx service
   ansible.builtin.systemd_service:
     state: restarted
     name: nginx
     enabled: yes
 
-- name: Import NewRelic Nginx Setup
-  ansible.builtin.import_role:
-    name: newrelic
-    tasks_from: nginx
-#
