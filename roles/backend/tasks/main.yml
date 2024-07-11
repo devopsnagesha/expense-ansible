@@ -45,9 +45,9 @@
     state: import
     name: all
     target: /app/schema/backend.sql
-    login_user: root
-    login_password: "{{mysql_root_password}}"
-    login_host: mysql-{{env}}.angadicnc.online
+    login_user: "{{rds_username}}"
+    login_password: "{{rds_password}}"
+    login_host: "{{ rds_endpoint }}"
 
 - name: Import NewRelic NodeJS Setup
   ansible.builtin.import_role:

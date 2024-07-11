@@ -4,7 +4,7 @@ Description = Backend Service
 [Service]
 User={{app_user}}
 WorkingDirectory=/app
-Environment=DB_HOST="mysql-{{ env }}.angadicnc.online"
+Environment=DB_HOST="{{ rds_endpoint }}"
 Environment=NEW_RELIC_APP_NAME=backend
 Environment=NEW_RELIC_LICENSE_KEY={{NEWRELIC_KEY}}
 ExecStart=/bin/node -r newrelic /app/index.js
